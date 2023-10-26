@@ -20,15 +20,25 @@ namespace Requisitos
        
         protected void GridDevedor_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+            GridViewRow row = GridDevedor.Rows[rowIndex];
+            TableCell cell = row.Cells[0];
+
             if (e.CommandName == "Deletar")
             {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-
-                GridViewRow row = GridDevedor.Rows[rowIndex];
-                TableCell cell = row.Cells[0];
                 int valor = Convert.ToInt32(cell.Text);
 
                 DAO.AcessoDados.DeletarDevedor(valor);
+            }
+
+            if (e.CommandName == "Editar")
+            {
+                int valor = Convert.ToInt32(cell.Text);
+
+                string url = "PaginaDeEdicao.aspx?ID=" + valor;
+                Response.Redirect(url);
+
             }
             CarregarDadosNoGridView();
 

@@ -19,8 +19,8 @@
                         <asp:BoundField DataField="DEV_DATAPAG" HeaderText="Data de Pagamento" />
                         <asp:BoundField DataField="DEV_VLPRINCIPAL" HeaderText="Valor Principal " />
                         <asp:BoundField DataField="DEV_VLATUALIZADO" HeaderText="Valor Atualizado " />
-                        <asp:ButtonField ButtonType="Button" CommandName="Deletar" Text="Deletar"  />
-
+                        <asp:ButtonField ButtonType="link"  CommandName="Editar" Text="Editar" HeaderText="Editar"/> 
+                        <asp:ButtonField ButtonType="Button" CommandName="Deletar" Text="Deletar" HeaderText="Deletar"  />
 
                     </Columns>
                 </asp:GridView>
