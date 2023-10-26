@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Controllers\Cadastro.aspx" />
+    <Content Include="Controllers\EditarDevedores.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -238,6 +239,13 @@
     </Compile>
     <Compile Include="Controllers\Cadastro.aspx.designer.cs">
       <DependentUpon>Cadastro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\EditarDevedores.aspx.cs">
+      <DependentUpon>EditarDevedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controllers\EditarDevedores.aspx.designer.cs">
+      <DependentUpon>EditarDevedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAO\AcessoDados.cs" />
     <Compile Include="Default.aspx.cs">
