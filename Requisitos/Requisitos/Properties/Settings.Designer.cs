@@ -12,7 +12,7 @@ namespace Requisitos.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -32,6 +32,17 @@ namespace Requisitos.Properties {
         public string strConexao {
             get {
                 return ((string)(this["strConexao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("user id=ADM;pwd=ADMUSR;Application Name=TESTE;data source=TMKTBDSQL15;persist sec" +
+            "urity info=False;connection reset=false;Pooling=true;Connection Lifetime=1800;in" +
+            "itial catalog=TESTE;min pool size=1;max pool size=999;Connect Timeout=1800\r\n")]
+        public string strConexao15 {
+            get {
+                return ((string)(this["strConexao15"]));
             }
         }
     }

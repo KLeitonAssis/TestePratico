@@ -13,7 +13,8 @@ namespace Requisitos.DAO
         {
             try
             {
-        string connectionString = Properties.Settings.Default.strConexao;
+            //string connectionString = Properties.Settings.Default.strConexao;
+            string connectionString = Properties.Settings.Default.strConexao15;
 
                 DataSet ds = new DataSet();
                 string sql = "STP_SELECT_LISTA_DEVEDOR";
@@ -48,7 +49,8 @@ namespace Requisitos.DAO
         {
             try
             {
-                string connectionString = Properties.Settings.Default.strConexao;
+                //string connectionString = Properties.Settings.Default.strConexao;
+                string connectionString = Properties.Settings.Default.strConexao15;
 
                 DataSet ds = new DataSet();
                 string sql = "STP_CADASTRAR_NOVO_DEVEDOR";
@@ -59,15 +61,11 @@ namespace Requisitos.DAO
                     using (SqlCommand cmd = new SqlCommand(sql, cn))
                     {
                         cn.Open();
-                        //cmd.Parameters.AddWithValue("@ProductID", CPF);
-                        //cmd.Parameters.AddWithValue("@ProductID", Contrato);
-                        //cmd.Parameters.AddWithValue("@ProductID", Data);
-                        //cmd.Parameters.AddWithValue("@ProductID", ValorPagamento);
-                        //cmd.Parameters.AddWithValue("@ProductID", ValorAtualizado);
+
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.Add(new SqlParameter("@CPF", SqlDbType.VarChar));
-                        cmd.Parameters["@CPF"].Value = CPF; // Substitua pelo valor desejado
+                        cmd.Parameters["@CPF"].Value = CPF; 
 
                         cmd.Parameters.Add(new SqlParameter("@CONTRATO", SqlDbType.VarChar, 50));
                         cmd.Parameters["@CONTRATO"].Value = Contrato; 
@@ -80,6 +78,43 @@ namespace Requisitos.DAO
 
                         cmd.Parameters.Add(new SqlParameter("@VALORATUA", SqlDbType.VarChar, 50));
                         cmd.Parameters["@VALORATUA"].Value = ValorAtualizado;
+
+                        cmd.CommandTimeout = 360000;
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public static void DeletarDevedor(int CODIGO)
+        {
+            try
+            {
+                //string connectionString = Properties.Settings.Default.strConexao;
+                string connectionString = Properties.Settings.Default.strConexao15;
+
+                DataSet ds = new DataSet();
+                string sql = "STP_DELETAR_DEVEDOR";
+
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    {
+                        cn.Open();
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add(new SqlParameter("@CODIGO", SqlDbType.VarChar));
+                        cmd.Parameters["@CODIGO"].Value = CODIGO;
 
                         cmd.CommandTimeout = 360000;
 

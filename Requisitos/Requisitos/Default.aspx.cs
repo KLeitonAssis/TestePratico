@@ -14,23 +14,33 @@ namespace Requisitos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CarregarDadosNoGridView();
+        }
+
+       
+        protected void GridDevedor_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Deletar")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow row = GridDevedor.Rows[rowIndex];
+                TableCell cell = row.Cells[0];
+                int valor = Convert.ToInt32(cell.Text);
+
+                DAO.AcessoDados.DeletarDevedor(valor);
+            }
+            CarregarDadosNoGridView();
+
+        }
+
+        private void CarregarDadosNoGridView()
+        {
             DataSet ds = new DataSet();
-
-
             ds = DAO.AcessoDados.preencheGrid();
 
             GridDevedor.DataSource = ds;
             GridDevedor.DataBind();
-
-        }
-
-        protected void grdDados_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.Equals("Deletar"))
-            {
-                Session.Add("IdProduto", e.CommandArgument.ToString());
-                this.Response.Redirect("DetalheProduto.aspx");
-            }
         }
 
     }
