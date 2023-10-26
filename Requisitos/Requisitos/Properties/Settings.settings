@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="strConexao" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">user id=Teste;pwd=TESTE;Application Name=DEVEDORES;data source=DESKTOP-P7N6VT1;persist security info=False;connection reset=false;Pooling=true;Connection Lifetime=1800;initial catalog=DEVEDORES;min pool size=1;max pool size=999;Connect Timeout=1800</Value>
     </Setting>
   </Settings>
 </SettingsFile>

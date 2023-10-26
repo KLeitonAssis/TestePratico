@@ -2,47 +2,24 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <webopt:bundlereference runat="server" path="~/Content/css" />
     <main>
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">Devedores</h1>
-            <p>
-                <asp:GridView ID="GridDevedor" runat="server" AutoGenerateColumns="False"
-    DataKeyNames="id"
-    onrowcancelingedit="EmployeeGridView_RowCancelingEdit"
-    onrowediting="EmployeeGridView_RowEditing"            
-    onrowdeleting="EmployeeGridView_RowDeleting"
-    onrowupdating="EmployeeGridView_RowUpdating">
-      
-        <Columns>
-        <asp:TemplateField HeaderText="Cod.">
-        <ItemTemplate>    <%#Container.DataItemIndex+1 %>    </ItemTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nome">
-        <ItemTemplate>    <%#Eval("nome") %>    </ItemTemplate>
-        <EditItemTemplate>
-        <asp:TextBox ID="txtnome" runat="server" Text='<%#Eval("nome") %>'></asp:TextBox>
-        </EditItemTemplate>
-        </asp:TemplateField>   
-         <asp:TemplateField HeaderText="Endereco">
-        <ItemTemplate>    <%#Eval("endereco") %>    </ItemTemplate>
-        <EditItemTemplate>
-        <asp:TextBox ID="txtendereco" runat="server" Text='<%#Eval("endereco") %>'></asp:TextBox>
-        </EditItemTemplate>
-        </asp:TemplateField>
-         <asp:TemplateField HeaderText="Email">
-        <ItemTemplate>    <%#Eval("email") %>    </ItemTemplate>
-        <EditItemTemplate>
-        <asp:TextBox ID="txtemail" runat="server" Text='<%#Eval("email") %>'></asp:TextBox>
-        </EditItemTemplate>
-        </asp:TemplateField>
-        <asp:CommandField ShowEditButton="true" ButtonType ="Image"
-            EditImageUrl="Imagem/editar.jpg"
-            UpdateImageUrl="Imagem/aceitar.jpg"
-            CancelImageUrl="Imagem/erro.jpg" HeaderText="Editar" />
-        <asp:CommandField ShowDeleteButton="true" ButtonType="Image" DeleteImageUrl="Imagem/erro.jpg" HeaderText="Deletar" /> 
-    </Columns>
-    </asp:GridView>
-            </p>
+            <h1 id="aspnetTitle" dir="auto">Devedores</h1>
+           
+
+                <asp:GridView ID="GridDevedor" runat="server" AutoGenerateColumns="false" HorizontalAlign="Center"  Width="100%">
+                    <Columns >
+                        <asp:BoundField DataField="DEV_CPF" HeaderText="CPF" />
+                        <asp:BoundField DataField="DEV_CONTRATO_NUM" HeaderText="Contrato" />
+                        <asp:BoundField DataField="DEV_DATAPAG" HeaderText="Data de Pagamento" />
+                        <asp:BoundField DataField="DEV_VLPRINCIPAL" HeaderText="Valor Principal " />
+                        <asp:BoundField DataField="DEV_VLATUALIZADO" HeaderText="Valor Atualizado " />
+                        <asp:ButtonField Text="Deletar" ButtonType="Button" HeaderText="Deletar" ></asp:ButtonField>
+                    </Columns>
+                </asp:GridView>
+               
+    
         </section>
     </main>
 

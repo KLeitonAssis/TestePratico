@@ -9,18 +9,16 @@ namespace Requisitos.DAO
     public class AcessoDados
     {
 
-
         public static DataSet preencheGrid()
         {
-
-            string strConexao = @"Data Source=.\SQLEXPRESS;Initial Catalog=Cadastro;Integrated Security=SSPI;";
-
             try
             {
-                DataSet ds = new DataSet();
-                string sql = "STP_TESTE";
+        string connectionString = Properties.Settings.Default.strConexao;
 
-                using (SqlConnection cn = new SqlConnection(strConexao))
+                DataSet ds = new DataSet();
+                string sql = "STP_SELECT_LISTA_DEVEDOR";
+
+                using (SqlConnection cn = new SqlConnection(connectionString))
                 {
                     cn.Open();
 
@@ -37,20 +35,66 @@ namespace Requisitos.DAO
                     }
                 }
                 return ds;
-                //SqlConnection con = new SqlConnection(strConexao);
-                //con.Open();
-                //SqlCommand cmd = new SqlCommand("sproc_GetClientes", con);
-                //SqlDataReader dr = cmd.ExecuteReader();
-                //DataTable dt = new DataTable();
-                //dt.Load(dr);
-                //exibe os dados no GridView
 
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            
+
+        }
+
+        public static void CadastrarDevedor(String CPF,String Contrato,String Data, String ValorPagamento, String ValorAtualizado)
+        {
+            try
+            {
+                string connectionString = Properties.Settings.Default.strConexao;
+
+                DataSet ds = new DataSet();
+                string sql = "STP_CADASTRAR_NOVO_DEVEDOR";
+
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    {
+                        cn.Open();
+                        //cmd.Parameters.AddWithValue("@ProductID", CPF);
+                        //cmd.Parameters.AddWithValue("@ProductID", Contrato);
+                        //cmd.Parameters.AddWithValue("@ProductID", Data);
+                        //cmd.Parameters.AddWithValue("@ProductID", ValorPagamento);
+                        //cmd.Parameters.AddWithValue("@ProductID", ValorAtualizado);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add(new SqlParameter("@CPF", SqlDbType.VarChar));
+                        cmd.Parameters["@CPF"].Value = CPF; // Substitua pelo valor desejado
+
+                        cmd.Parameters.Add(new SqlParameter("@CONTRATO", SqlDbType.VarChar, 50));
+                        cmd.Parameters["@CONTRATO"].Value = Contrato; 
+
+                        cmd.Parameters.Add(new SqlParameter("@DATA", SqlDbType.DateTime));
+                        cmd.Parameters["@DATA"].Value = Data; 
+
+                        cmd.Parameters.Add(new SqlParameter("@VALORPAG", SqlDbType.VarChar, 50));
+                        cmd.Parameters["@VALORPAG"].Value = ValorPagamento; 
+
+                        cmd.Parameters.Add(new SqlParameter("@VALORATUA", SqlDbType.VarChar, 50));
+                        cmd.Parameters["@VALORATUA"].Value = ValorAtualizado;
+
+                        cmd.CommandTimeout = 360000;
+
+                        // Executar a stored procedure
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 }
